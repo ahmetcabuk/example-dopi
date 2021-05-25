@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/ThirdPersonJoystick.unity
+    guid: a14e6ed3f97692c429a636228e5a0a98
   m_configObjects: {}
