@@ -743,7 +743,7 @@ GameObject:
   - component: {fileID: 1098374583}
   m_Layer: 0
   m_Name: MobileMaleFree1
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -826,7 +826,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   variableJoystick: {fileID: 0}
-  rigid: {fileID: 0}
+  rigid: {fileID: 3669800269818439530}
   useTranslate: 0
   useRigidMove: 1
 --- !u!114 &1098374583

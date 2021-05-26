@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class JoystickGlow : MonoBehaviour
 {
-
+    [Range(0f,0.9f)]
+    public float glowLimit;
     public GameObject glowArrowUp;
     public GameObject glowArrowDown;
     public GameObject glowArrowRight;
@@ -21,7 +22,7 @@ public class JoystickGlow : MonoBehaviour
     {
         Vector3 direction = new Vector3(0, 0, variableJoystick.Vertical) + new Vector3(variableJoystick.Horizontal, 0, 0);
 
-        if (direction.z > 0)
+        if (direction.z > glowLimit)
         {
             glowArrowUp.SetActive(true);
         }
@@ -30,7 +31,7 @@ public class JoystickGlow : MonoBehaviour
             glowArrowUp.SetActive(false);
         }
 
-        if (direction.z < 0)
+        if (direction.z < -glowLimit)
         {
             glowArrowDown.SetActive(true);
         }
@@ -39,7 +40,7 @@ public class JoystickGlow : MonoBehaviour
             glowArrowDown.SetActive(false);
         }
 
-        if (direction.x > 0)
+        if (direction.x > glowLimit)
         {
             glowArrowRight.SetActive(true);
         }
@@ -48,7 +49,7 @@ public class JoystickGlow : MonoBehaviour
             glowArrowRight.SetActive(false);
         }
 
-        if (direction.x < 0)
+        if (direction.x < -glowLimit)
         {
             glowArrowLeft.SetActive(true);
         }
