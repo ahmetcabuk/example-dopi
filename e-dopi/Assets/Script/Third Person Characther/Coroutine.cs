@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Coroutine : MonoBehaviour
 {
-    public bool dissapear;
+    public bool dissapear = false;
     public float disapearTime;
+    
 
 
     private void OnCollisionEnter(Collision collision)
@@ -23,6 +24,7 @@ public class Coroutine : MonoBehaviour
         //yield return new WaitForEndOfFrame();
         //yield return new WaitUntil(() => dissapear == true);
 
+        dissapear = true;
         gameObject.SetActive(false);
     }
 
