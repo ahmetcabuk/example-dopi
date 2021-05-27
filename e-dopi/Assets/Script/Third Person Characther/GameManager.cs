@@ -11,15 +11,6 @@ public class GameManager : Singleton<GameManager>
         _player = GameObject.FindGameObjectWithTag("Player");
     }
 
-    //private IEnumerator RestartLevel()
-    //{
-
-    //    //yield return WaitUntil(() => ;
-
-    //    Vector3 restartPosition = new Vector3(0, 0, 0);
-    //    player.transform.position = restartPosition;
-    //}
-
     public void RestartLevel()
     {
         Vector3 restartPosition = new Vector3(0, 0, 0);

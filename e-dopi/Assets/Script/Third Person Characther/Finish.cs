@@ -3,17 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-public class Finish : MonoBehaviour
+public class Finish : Singleton<Finish>
 {
-    
-    private Renderer renderer;
     private Material material;
     private float startAlpha;
 
     private void Awake()
     {
-        renderer = GetComponent<Renderer>();
-        material = renderer.material;
+        material = GetComponent<Renderer>().material;
     }
     private void Start()
     {
@@ -25,6 +22,7 @@ public class Finish : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             Debug.Log("Mission Accomplished");
+            FinishTween.Instance.StartFinishAnimation();
         }
     }
 

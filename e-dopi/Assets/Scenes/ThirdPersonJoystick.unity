@@ -2984,6 +2984,20 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3669800269818439540, guid: a1c6d706c52b6c74e916cd108308b8cb, type: 3}
   m_PrefabInstance: {fileID: 1098374574}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1098374576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1098374575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66d2e75137ac5c049b4e94e8eb134330, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveUpDuration: 3
+  rotateDuration: 0.125
 --- !u!1 &1128328563
 GameObject:
   m_ObjectHideFlags: 0
