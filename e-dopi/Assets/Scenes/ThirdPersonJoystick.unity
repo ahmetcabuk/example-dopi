@@ -546,7 +546,7 @@ MonoBehaviour:
   destinationPos: {x: -1.4, y: 0.5, z: 9.3}
   duration: 0.25
   durationMultiply: 4
-  dissapear: 0
+  increaseDuration: 0
 --- !u!54 &171638136
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -833,7 +833,7 @@ MonoBehaviour:
   destinationPos: {x: 7.84, y: 0.5, z: -1}
   duration: 0.25
   durationMultiply: 4
-  dissapear: 0
+  increaseDuration: 0
 --- !u!54 &262208169
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -961,6 +961,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dissapear: 0
   disapearTime: 0
+  onDissapearChanged:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!65 &347233269
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1071,6 +1074,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dissapear: 0
   disapearTime: 0
+  onDissapearChanged:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!65 &448840178
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1198,7 +1204,7 @@ MonoBehaviour:
   destinationPos: {x: -1.65, y: 0.5, z: -9.496}
   duration: 0.25
   durationMultiply: 4
-  dissapear: 0
+  increaseDuration: 0
 --- !u!54 &465081038
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1326,6 +1332,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dissapear: 0
   disapearTime: 0
+  onDissapearChanged:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!65 &475170588
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2136,7 +2145,7 @@ MonoBehaviour:
   destinationPos: {x: -1.4, y: 0.5, z: 3}
   duration: 0.5
   durationMultiply: 4
-  dissapear: 0
+  increaseDuration: 0
 --- !u!114 &770506338
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2214,7 +2223,7 @@ MonoBehaviour:
   destinationPos: {x: 5.576, y: 0.5, z: -1}
   duration: 0.25
   durationMultiply: 4
-  dissapear: 0
+  increaseDuration: 0
 --- !u!54 &775564004
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2730,6 +2739,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dissapear: 0
   disapearTime: 0
+  onDissapearChanged:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!65 &1074396945
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2929,6 +2941,22 @@ PrefabInstance:
       propertyPath: variableJoystick
       value: 
       objectReference: {fileID: 1516936395}
+    - target: {fileID: 3669800269818439529, guid: a1c6d706c52b6c74e916cd108308b8cb, type: 3}
+      propertyPath: m_Size.x
+      value: 0.5969316
+      objectReference: {fileID: 0}
+    - target: {fileID: 3669800269818439529, guid: a1c6d706c52b6c74e916cd108308b8cb, type: 3}
+      propertyPath: m_Size.z
+      value: 0.43048766
+      objectReference: {fileID: 0}
+    - target: {fileID: 3669800269818439529, guid: a1c6d706c52b6c74e916cd108308b8cb, type: 3}
+      propertyPath: m_Center.x
+      value: -0.0017129183
+      objectReference: {fileID: 0}
+    - target: {fileID: 3669800269818439529, guid: a1c6d706c52b6c74e916cd108308b8cb, type: 3}
+      propertyPath: m_Center.z
+      value: 0.017330483
+      objectReference: {fileID: 0}
     - target: {fileID: 3669800269818439540, guid: a1c6d706c52b6c74e916cd108308b8cb, type: 3}
       propertyPath: m_Name
       value: MobileMaleFree1
@@ -3247,6 +3275,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dissapear: 0
   disapearTime: 0
+  onDissapearChanged:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!65 &1271295805
 BoxCollider:
   m_ObjectHideFlags: 0

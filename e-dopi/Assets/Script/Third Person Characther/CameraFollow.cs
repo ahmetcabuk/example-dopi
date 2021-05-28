@@ -21,11 +21,6 @@ public class CameraFollow : MonoBehaviour
     void Start()
     {
         _targetPositionOffset = target.transform.position + gameObject.transform.position;
-
-        //if (!_smoothness)
-        //{
-        //    _smoothSpeed = 1;
-        //}
     }
 
     private void FixedUpdate()

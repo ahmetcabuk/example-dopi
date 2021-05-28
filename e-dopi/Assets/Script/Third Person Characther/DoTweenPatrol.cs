@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
-using UnityEngine.Events;
 
 public class DoTweenPatrol : MonoBehaviour
 {
@@ -15,25 +14,34 @@ public class DoTweenPatrol : MonoBehaviour
 
     private Vector3 startPosition;
     private DurationReductionCube dRC;
-
-    public bool dissapear;
+    public bool increaseDuration = false;
 
     void Awake()
     {
         startPosition = gameObject.transform.position;
-        transform.DOMove(destinationPos,duration).SetLoops(-1,LoopType.Yoyo);
+        transform.DOMove(destinationPos, duration).SetLoops(-1, LoopType.Yoyo);
         StartCoroutine(nameof(MultiplyDuration));
         dRC = durationMultiplyCube.GetComponent<DurationReductionCube>();
     }
 
-    private void Update()
+    private void OnEnable()
     {
-        dissapear = dRC.dissapear;
+        dRC.onDissapearChanged.AddListener(OnDissapearChangedListener);
+    }
+
+    private void OnDisable()
+    {
+        dRC.onDissapearChanged.RemoveListener(OnDissapearChangedListener);
+    }
+
+    private void OnDissapearChangedListener()
+    {
+        increaseDuration = true;
     }
 
     IEnumerator MultiplyDuration()
     {
-        yield return new WaitUntil(() => dissapear == true);
+        yield return new WaitUntil(() => increaseDuration == true);
         gameObject.GetComponent<Renderer>().material = whiteMaterial;
         DOTween.Kill(gameObject.transform);
         Sequence seq = DOTween.Sequence();

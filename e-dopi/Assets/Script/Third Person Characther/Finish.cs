@@ -31,5 +31,4 @@ public class Finish : Singleton<Finish>
         material.DOFade(0, 1).SetLoops(-1,LoopType.Yoyo);
         yield return null;
     }
-
 }
