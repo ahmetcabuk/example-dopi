@@ -27,7 +27,6 @@ public class CharacterAnimation : MonoBehaviour
 
             if (direction.x > runLimit || direction.x < -runLimit ||  direction.z > runLimit || direction.z < -runLimit)
             {
-                animator.SetBool("isWalking", false);
                 animator.SetBool("isRunning", true);
             }
             else

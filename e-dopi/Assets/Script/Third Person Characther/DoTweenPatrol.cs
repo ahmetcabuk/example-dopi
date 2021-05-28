@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.Events;
 
 public class DoTweenPatrol : MonoBehaviour
 {
@@ -13,7 +14,7 @@ public class DoTweenPatrol : MonoBehaviour
     public float durationMultiply;
 
     private Vector3 startPosition;
-    private Coroutine coroutine;
+    private DurationReductionCube dRC;
 
     public bool dissapear;
 
@@ -22,12 +23,12 @@ public class DoTweenPatrol : MonoBehaviour
         startPosition = gameObject.transform.position;
         transform.DOMove(destinationPos,duration).SetLoops(-1,LoopType.Yoyo);
         StartCoroutine(nameof(MultiplyDuration));
-        coroutine = durationMultiplyCube.GetComponent<Coroutine>();
+        dRC = durationMultiplyCube.GetComponent<DurationReductionCube>();
     }
 
     private void Update()
     {
-        dissapear = coroutine.dissapear;
+        dissapear = dRC.dissapear;
     }
 
     IEnumerator MultiplyDuration()

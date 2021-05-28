@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Coroutine : MonoBehaviour
+public class DurationReductionCube : MonoBehaviour
 {
     public bool dissapear = false;
     public float disapearTime;
