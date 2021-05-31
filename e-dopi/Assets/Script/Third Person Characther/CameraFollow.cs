@@ -15,8 +15,14 @@ public class CameraFollow : MonoBehaviour
     [SerializeField]
     [Range(0, 1)]
     private float _smoothSpeed = 0.125f;
-    
 
+    private CameraZoom _cameraZoom;
+    private bool _zoomOn;
+
+    private void Awake()
+    {
+        _cameraZoom = GetComponent<CameraZoom>();
+    }
 
     void Start()
     {
@@ -25,13 +31,18 @@ public class CameraFollow : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!_smoothness)
-        {
-            _smoothSpeed = 1;
-        } 
+        _zoomOn = _cameraZoom.zoomOn;
 
-        Vector3 desiredPosition = target.transform.position + _targetPositionOffset;
-        Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, _smoothSpeed);
-        transform.position = smoothedPosition;
+        if (!_zoomOn)
+        {
+            if (!_smoothness)
+            {
+                _smoothSpeed = 1;
+            }
+
+            Vector3 desiredPosition = target.transform.position + _targetPositionOffset;
+            Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, _smoothSpeed);
+            transform.position = smoothedPosition;
+        }
     }
 }
