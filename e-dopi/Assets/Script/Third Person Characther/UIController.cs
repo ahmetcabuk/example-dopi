@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
+using TMPro;
 
 public class UIController : Singleton<UIController>
 {
@@ -12,9 +13,9 @@ public class UIController : Singleton<UIController>
 
     private float fadeOutDuration = 1;
 
-    public void CoroutineExecuter(string coroutineName)
+    public void CoroutineExecuter(string coroutineName, GameObject uIElement)
     {
-        StartCoroutine(coroutineName, interactionButton);
+        StartCoroutine(coroutineName, uIElement);
     }
 
     public IEnumerator HideUIElement(GameObject objectToHide)
@@ -35,9 +36,4 @@ public class UIController : Singleton<UIController>
         objectToHide.SetActive(true);
         objectToHideImage.DOFade(1, fadeOutDuration);
     }
-
-    //public void ShowUIElement(GameObject objectToHide)
-    //{
-    //    objectToHide.SetActive(true);
-    //}
 }

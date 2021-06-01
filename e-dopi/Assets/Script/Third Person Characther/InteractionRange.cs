@@ -16,7 +16,7 @@ public class InteractionRange : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            UIController.Instance.CoroutineExecuter("HideUIElement");
+            UIController.Instance.CoroutineExecuter("HideUIElement",UIController.Instance.interactionButton);
         }
     }
 }
