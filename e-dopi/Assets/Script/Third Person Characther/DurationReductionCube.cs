@@ -25,6 +25,7 @@ public class DurationReductionCube : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            AudioManager.Instance.PlayAudio(AudioManager.Instance.success);
             StartCoroutine(nameof(DissapearCoroutine));
         }
     }

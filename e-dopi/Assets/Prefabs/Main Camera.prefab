@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8402218645814204255}
   - component: {fileID: 8402218645814204254}
   - component: {fileID: 8402218645814204253}
+  - component: {fileID: 1655428006}
   m_Layer: 6
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -96,5 +97,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eccb5ba8f23227e41947e0a090bc87b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectToFollow: {fileID: 0}
-  positionMargin: {x: 0, y: 0, z: 0}
+  target: {fileID: 0}
+  _smoothness: 1
+  lookAt: 0
+  _smoothSpeed: 0.1
+--- !u!114 &1655428006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8402218645814204241}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a36f1d37db60b6b49a88292d836d1469, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zoomOn: 0
+  targetObject: {fileID: 0}
+  zoomObjectName: 
+  fpsView: {fileID: 0}
+  zoomAnimationDuration: 1

@@ -9,6 +9,7 @@ public class CharacterAnimation : MonoBehaviour
     public float runLimit;
 
     private Animator animator;
+    private bool running = false;
 
     private void Start()
     {
@@ -25,12 +26,28 @@ public class CharacterAnimation : MonoBehaviour
 
             animator.SetBool("isWalking", true);
 
+            if (!AudioManager.Instance.audioSource.isPlaying && running == false)
+            {
+                var randomPitch = Random.Range(1f, 1.2f);
+
+                AudioManager.Instance.PlayAudio(AudioManager.Instance.footStepLong, .5f, randomPitch);
+            }
+
             if (direction.x > runLimit || direction.x < -runLimit ||  direction.z > runLimit || direction.z < -runLimit)
             {
+                running = true;
                 animator.SetBool("isRunning", true);
+
+                if (!AudioManager.Instance.audioSource.isPlaying && running == true)
+                {
+                    var randomPitch = Random.Range(0.8f, 1f);
+
+                    AudioManager.Instance.PlayAudio(AudioManager.Instance.footStepShort, .5f, randomPitch);
+                }
             }
             else
             {
+                running = false;
                 animator.SetBool("isRunning", false);
             }
         }

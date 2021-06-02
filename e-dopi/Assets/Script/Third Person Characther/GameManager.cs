@@ -13,6 +13,7 @@ public class GameManager : Singleton<GameManager>
 
     public void RestartLevel()
     {
+        AudioManager.Instance.PlayAudio(AudioManager.Instance.fail);
         Vector3 restartPosition = new Vector3(0, 0, 0);
         _player.transform.position = restartPosition;
     }
