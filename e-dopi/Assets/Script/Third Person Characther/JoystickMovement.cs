@@ -8,6 +8,8 @@ public class JoystickMovement : MonoBehaviour
     public VariableJoystick variableJoystick;
     public Rigidbody rigid;
 
+    public bool moveLock = false;
+
     public void FixedUpdate()
     {
         Vector3 direction = new Vector3 (0,0,variableJoystick.Vertical) + new Vector3 (variableJoystick.Horizontal, 0,0);
@@ -15,3 +17,5 @@ public class JoystickMovement : MonoBehaviour
         rigid.MovePosition(transform.position + (direction * speed * Time.deltaTime));
     }
 }
+
+

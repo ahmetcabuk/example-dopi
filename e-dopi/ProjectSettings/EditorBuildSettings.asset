@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/ThirdPersonJoystick.unity
-    guid: a14e6ed3f97692c429a636228e5a0a98
+    path: Assets/Scenes/EightWayControll.unity
+    guid: f7aa4e3c3a513d944b6c10796ddf05cc
   m_configObjects: {}
