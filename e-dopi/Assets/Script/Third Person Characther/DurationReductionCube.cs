@@ -33,13 +33,8 @@ public class DurationReductionCube : MonoBehaviour
     IEnumerator DissapearCoroutine()
     {
         yield return null;
-        //yield return new WaitForSeconds(disapear); 
-        //yield return new WaitForEndOfFrame();
-        //yield return new WaitUntil(() => dissapear == true);
-
         
         Dissapear = true;
         gameObject.SetActive(false);
     }
-
 }

@@ -3,32 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-public class CameraZoom : MonoBehaviour
+public class CameraZoom : Singleton<CameraZoom>
 {
     public bool zoomOn = false;
     public GameObject targetObject;
     public string zoomObjectName;
     public GameObject fpsView;
     public float zoomAnimationDuration;
-    //public CameraZoomEnum cameraZoomDirection;
 
     private Camera _cam;
     private CameraFollow _cameraFollow;
-    private Vector3 initialPosition;
-    private Vector3 initialRotation;
+    private Vector3 beforeZoomPosition;
+    private Vector3 beforeZoomRotation;
     private GameObject _zoomObject;
+    private bool animationFinish = false;
 
+    private Sequence sequence;
 
     private void Awake()
     {
         _cam = GetComponent<Camera>();
         _cameraFollow = GetComponent<CameraFollow>();
-    }
-
-    private void Start()
-    {
-        initialPosition = transform.position;
-        initialRotation = transform.rotation.eulerAngles;
     }
 
     private void Update()
@@ -43,12 +38,15 @@ public class CameraZoom : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.F) && zoomOn == true)
         {
             zoomOn = false;
-            transform.DORotate(initialRotation, zoomAnimationDuration);
+            transform.DORotate(beforeZoomRotation, zoomAnimationDuration);
         }
     }
 
     public void Zoom()
     {
+        beforeZoomPosition = transform.position;
+        beforeZoomRotation = transform.rotation.eulerAngles;
+
         if (!zoomOn)
         {
             _zoomObject = targetObject.transform.Find(zoomObjectName).gameObject;
@@ -56,19 +54,46 @@ public class CameraZoom : MonoBehaviour
             transform.DOMove(_zoomObject.transform.position, zoomAnimationDuration);
             transform.DORotate(_zoomObject.transform.rotation.eulerAngles, zoomAnimationDuration);
         }
-
         else
         {
-            zoomOn = false;
-            transform.DORotate(initialRotation, zoomAnimationDuration);
+            ZoomOut();
         }
     }
-}
 
-public enum CameraZoomEnum
-{
-    DirectionUp = 1,
-    DirectionDown = 2,
-    DirectionRight = 3,
-    DirectionLeft = 4
+    private void ZoomOut()
+    {
+        zoomOn = false;
+        transform.DORotate(beforeZoomRotation, zoomAnimationDuration);
+    }
+
+    public IEnumerator ZoomSequenceCoroutine(List<GameObject>  sequenceTargetList)
+    {
+        beforeZoomPosition = transform.position;
+        beforeZoomRotation = transform.rotation.eulerAngles;
+
+        sequence = DOTween.Sequence();
+        zoomOn = true;
+
+        for (int i = 0; i < sequenceTargetList.Capacity; i++)
+        {
+            if (i == sequenceTargetList.Capacity -1)
+            {
+                sequence.Append(transform.DOMove(sequenceTargetList[i].transform.position, zoomAnimationDuration));
+                sequence.Join(transform.DORotate(sequenceTargetList[i].transform.rotation.eulerAngles, zoomAnimationDuration)).OnComplete(SequenceComplete);
+            }
+            else
+            {
+                sequence.Append(transform.DOMove(sequenceTargetList[i].transform.position, zoomAnimationDuration));
+                sequence.Join(transform.DORotate(sequenceTargetList[i].transform.rotation.eulerAngles, zoomAnimationDuration));
+            }
+        }
+
+        yield return new WaitUntil(() => animationFinish);
+        ZoomOut();
+    }
+
+    public void SequenceComplete()
+    {
+        animationFinish = true;
+    }
 }
