@@ -10,15 +10,18 @@ public class CharacterAnimation : MonoBehaviour
 
     private Animator animator;
     private bool running = false;
+    private JoystickMovement joystickMovement;
 
     private void Start()
     {
         animator = GetComponent<Animator>();
+        joystickMovement = GetComponent<JoystickMovement>();
     }
 
     private void FixedUpdate()
     {
         Vector3 direction = Vector3.forward * variableJoystick.Vertical + Vector3.right * variableJoystick.Horizontal;
+        var moveLock = joystickMovement.moveLock;
 
         if (direction != new Vector3(0,0,0))
         {
@@ -33,7 +36,7 @@ public class CharacterAnimation : MonoBehaviour
                 AudioManager.Instance.PlayAudio(AudioManager.Instance.footStepLong, .5f, randomPitch);
             }
 
-            if (direction.x > runLimit || direction.x < -runLimit ||  direction.z > runLimit || direction.z < -runLimit)
+            if (direction.x > runLimit && !moveLock || direction.x < -runLimit && !moveLock ||  direction.z > runLimit && !moveLock || direction.z < -runLimit && !moveLock)
             {
                 running = true;
                 animator.SetBool("isRunning", true);

@@ -826,9 +826,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bac3e46c1e83f2d4e8d585347661c36e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  maxSpeed: 3
   variableJoystick: {fileID: 0}
   rigid: {fileID: 3669800269818439530}
+  moveLock: 1
 --- !u!114 &1098374583
 MonoBehaviour:
   m_ObjectHideFlags: 0
