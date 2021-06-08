@@ -19,7 +19,6 @@ public class EightWayControll : MonoBehaviour
     public bool downLeft = false;
 
     private Animator animator;
-    private bool multiDirection = false;
     private float multiDirectionSpeed;
 
     private void Awake()

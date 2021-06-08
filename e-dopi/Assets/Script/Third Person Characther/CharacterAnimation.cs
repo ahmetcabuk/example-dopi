@@ -33,7 +33,7 @@ public class CharacterAnimation : MonoBehaviour
             {
                 var randomPitch = Random.Range(1f, 1.2f);
 
-                AudioManager.Instance.PlayAudio(AudioManager.Instance.footStepLong, .5f, randomPitch);
+                AudioManager.Instance.PlaySFX2D(AudioKeys.FootStepLong, .5f, randomPitch);
             }
 
             if (direction.x > runLimit && !moveLock || direction.x < -runLimit && !moveLock ||  direction.z > runLimit && !moveLock || direction.z < -runLimit && !moveLock)
@@ -45,7 +45,7 @@ public class CharacterAnimation : MonoBehaviour
                 {
                     var randomPitch = Random.Range(0.8f, 1f);
 
-                    AudioManager.Instance.PlayAudio(AudioManager.Instance.footStepShort, .5f, randomPitch);
+                    AudioManager.Instance.PlaySFX2D(AudioKeys.FootStepShort, .5f, randomPitch);
                 }
             }
             else
