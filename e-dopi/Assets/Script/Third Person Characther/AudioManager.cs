@@ -10,8 +10,7 @@ public class AudioManager : Singleton<AudioManager>
     [HideInInspector]
     public AudioSource musicSource;
     public AudioMixer mainMixer;
-    public AudioMixerGroups sFXMixer;
-    public AudioMixerGroups musicMixer;
+    
 
     [Header("Mute")]
     public bool mainMute;
@@ -19,7 +18,8 @@ public class AudioManager : Singleton<AudioManager>
     public bool musicMute;
 
     private Dictionary<AudioKeys, AudioClip> audioClips = new Dictionary<AudioKeys, AudioClip>();
-
+    private Dictionary<MusicKeys, AudioClip> musicClips = new Dictionary<MusicKeys, AudioClip>();
+    
     private void Awake()
     {
         DontDestroyOnLoad(this);
@@ -30,39 +30,39 @@ public class AudioManager : Singleton<AudioManager>
 
     private void Start()
     {
-        PlayMusic(AudioKeys.SynapseMusic,.05f);
+        PlayMusic(MusicKeys.Synapse,.05f);
     }
 
     private void Update()
     {
         if (mainMute)
         {
-            mainMixer.SetFloat("Master", -80);
+            MuteMasterMixer();
         }
         else
         {
-            mainMixer.SetFloat("Master", 0);
+            UnMuteMasterMixer();
         }
 
         if (sFXMute)
         {
-            mainMixer.SetFloat("SFX", -80);
+            MuteSFXMixer();
         }
         else
         {
-            mainMixer.SetFloat("SFX", 0);
+            UnMuteSFXMixer();
         }
 
         if (musicMute)
         {
-            mainMixer.SetFloat("Music", -80);
+            MuteMusicMixer();
         }
         else
         {
-            mainMixer.SetFloat("Music", 0);
+            UnMuteMusicMixer();
         }
     }
-
+    
     private void GetAudioData()
     {
         AudioData data = Resources.LoadAll<AudioData>(string.Empty)[0];
@@ -71,8 +71,14 @@ public class AudioManager : Singleton<AudioManager>
         {
             audioClips.Add(item.key, item.value);
         }
+
+        foreach (var item in data.musics)
+        {
+            musicClips.Add(item.key, item.value);
+        }
     }
 
+    #region Play Clips
     public void PlaySFX2D(AudioKeys key, float volume = 1, float pitch = 1)
     {
         audioSource.spatialBlend = 0;
@@ -80,22 +86,43 @@ public class AudioManager : Singleton<AudioManager>
         audioSource.PlayOneShot(audioClips[key], volume);
     }
 
-    //public void PlaySFX3D(AudioClip audioClip, Vector3 soundPosition, float volume = 1, float pitch = 1, float spatialBlend = 1)
-    //{
-    //    GameObject temp3DAudioGameObject = new GameObject();
-    //    temp3DAudioGameObject.name = audioClip.name + "_Audio";
-    //    AudioSource tempAudioSource = temp3DAudioGameObject.AddComponent<AudioSource>();
-    //    tempAudioSource.transform.position = soundPosition;
-    //    //set Audio source settings MixerGroup SFX
-
-    //    audioSource.spatialBlend = spatialBlend;
-    //    audioSource.pitch = pitch;
-    //    audioSource.PlayOneShot(audioClip, volume);
-    //}
-
-    public void PlayMusic(AudioKeys key, float volume = 1)
+    public void PlaySFX3D(AudioKeys key, Vector3 soundPosition, float volume = 1, float pitch = 1, float spatialBlend = 1)
     {
-        musicSource.PlayOneShot(audioClips[key], volume);
+        GameObject temp3DAudioGameObject = new GameObject();
+        temp3DAudioGameObject.name = audioClips[key].name + "_Audio";
+        AudioSource tempAudioSource = temp3DAudioGameObject.AddComponent<AudioSource>();
+        tempAudioSource.transform.position = soundPosition;
+        tempAudioSource.clip = audioClips[key];
+        float audioClipLenght = audioClips[key].length;
+        audioSource.spatialBlend = spatialBlend;
+        audioSource.pitch = pitch;
+        audioSource.PlayOneShot(audioClips[key], volume);
+
+        StartCoroutine(DestroySoundGameObject(temp3DAudioGameObject, audioClipLenght + 0.1f));
+    }
+
+    private IEnumerator DestroySoundGameObject(GameObject objectToDestroy, float delayTime)
+    {
+        yield return new WaitForSeconds(delayTime);
+        Destroy(objectToDestroy);
+    }
+
+    public void PlayMusic(MusicKeys key, float volume = 1, bool loop = true)
+    {
+        musicSource.loop = loop;
+        musicSource.PlayOneShot(musicClips[key], volume);
+    }
+    #endregion
+
+    #region Mute
+    public void MuteMasterMixer()
+    {
+        mainMixer.SetFloat("Master", -80);
+    }
+
+    public void UnMuteMasterMixer()
+    {
+        mainMixer.SetFloat("Master", 0);
     }
 
     public void MuteSFXMixer()
@@ -117,4 +144,5 @@ public class AudioManager : Singleton<AudioManager>
     {
         mainMixer.SetFloat("Music", 0);
     }
+    #endregion
 }

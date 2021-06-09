@@ -12,6 +12,7 @@ public class UIController : Singleton<UIController>
     public GameObject imageGO;
 
     private float fadeOutDuration = 1;
+    private Image image;
 
     public void CoroutineExecuter(string coroutineName, GameObject uIElement)
     {
@@ -31,7 +32,7 @@ public class UIController : Singleton<UIController>
 
     public void ShowUIElement(GameObject objectToHide)
     {
-        var objectToHideImage = objectToHide.GetComponent<Image>();
+        Image objectToHideImage = objectToHide.GetComponent<Image>();
 
         objectToHide.SetActive(true);
         objectToHideImage.DOFade(1, fadeOutDuration);

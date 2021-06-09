@@ -21,5 +21,6 @@ MonoBehaviour:
     value: {fileID: 8300000, guid: b9f73410a8b4b024fbd3cb875665cb1f, type: 3}
   - key: 3
     value: {fileID: 8300000, guid: b57f5afd6b268dc4484c5b66ca8fca24, type: 3}
-  - key: 4
+  musics:
+  - key: 0
     value: {fileID: 8300000, guid: b6f766a2377951141b72b4de10dd129a, type: 3}

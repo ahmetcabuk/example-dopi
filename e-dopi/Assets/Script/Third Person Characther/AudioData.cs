@@ -6,6 +6,7 @@ using UnityEngine;
 public class AudioData : ScriptableObject
 {
     public List<AudioBase> sounds = new List<AudioBase>();
+    public List<MusicBase> musics = new List<MusicBase>();
 }
 
 [System.Serializable]
@@ -15,13 +16,24 @@ public class AudioBase
     public AudioClip value;
 }
 
+[System.Serializable]
+public class MusicBase
+{
+    public MusicKeys key;
+    public AudioClip value;
+}
+
 public enum AudioKeys
 {
     FootStepShort,
     FootStepLong,
     Error,
-    Success,
-    SynapseMusic
+    Success
+}
+
+public enum MusicKeys
+{
+    Synapse
 }
 
 public enum AudioMixerGroups

@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using System.Linq;
 
 public class CameraZoom : Singleton<CameraZoom>
 {
     public bool zoomOn = false;
-    public GameObject targetObject;
+    public GameObject targetSingleZoomObject;
     public string zoomObjectName;
     public GameObject fpsView;
     public float zoomAnimationDuration;
@@ -49,7 +50,7 @@ public class CameraZoom : Singleton<CameraZoom>
 
         if (!zoomOn)
         {
-            _zoomObject = targetObject.transform.Find(zoomObjectName).gameObject;
+            _zoomObject = targetSingleZoomObject.transform.Find(zoomObjectName).gameObject;
             zoomOn = true;
             transform.DOMove(_zoomObject.transform.position, zoomAnimationDuration);
             transform.DORotate(_zoomObject.transform.rotation.eulerAngles, zoomAnimationDuration);
@@ -76,7 +77,7 @@ public class CameraZoom : Singleton<CameraZoom>
 
         for (int i = 0; i < sequenceTargetList.Capacity; i++)
         {
-            if (i == sequenceTargetList.Capacity -1)
+            if (i == sequenceTargetList.Count - 1)
             {
                 sequence.Append(transform.DOMove(sequenceTargetList[i].transform.position, zoomAnimationDuration));
                 sequence.Join(transform.DORotate(sequenceTargetList[i].transform.rotation.eulerAngles, zoomAnimationDuration)).OnComplete(SequenceComplete);

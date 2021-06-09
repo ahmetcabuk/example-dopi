@@ -11,21 +11,14 @@ public class CameraFollow : MonoBehaviour
     [SerializeField]
     private bool _smoothness;
     [SerializeField]
-    private bool lookAt;
-    [SerializeField]
     [Range(0, 1)]
-    private float _smoothSpeed = 0.125f;
-
+    private float _smoothSpeed;
     private CameraZoom _cameraZoom;
     private bool _zoomOn;
 
     private void Awake()
     {
         _cameraZoom = GetComponent<CameraZoom>();
-    }
-
-    void Start()
-    {
         _targetPositionOffset = target.transform.position + gameObject.transform.position;
     }
 
