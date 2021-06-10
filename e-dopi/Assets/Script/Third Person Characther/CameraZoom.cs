@@ -72,6 +72,7 @@ public class CameraZoom : Singleton<CameraZoom>
         beforeZoomPosition = transform.position;
         beforeZoomRotation = transform.rotation.eulerAngles;
 
+        UIController.Instance.OffUI();
         sequence = DOTween.Sequence();
         zoomOn = true;
 
@@ -96,5 +97,6 @@ public class CameraZoom : Singleton<CameraZoom>
     public void SequenceComplete()
     {
         animationFinish = true;
+        UIController.Instance.OnUI();
     }
 }

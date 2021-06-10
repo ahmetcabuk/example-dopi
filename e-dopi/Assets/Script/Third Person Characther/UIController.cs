@@ -4,15 +4,43 @@ using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
 using TMPro;
+using Sirenix.OdinInspector;
 
 public class UIController : Singleton<UIController>
 {
     public GameObject joystick;
     public GameObject interactionButton;
-    public GameObject imageGO;
-
+    private List<GameObject> _uIElementsList = new List<GameObject>();
+    private GameObject _safeArea;
+    private GraphicRaycaster graphicRaycaster;
+    
     private float fadeOutDuration = 1;
-    private Image image;
+
+    private void Awake()
+    {
+        graphicRaycaster = GetComponent<GraphicRaycaster>();
+
+        if (transform.GetChild(0).gameObject.name == "SafeArea")
+        {
+            _safeArea = transform.GetChild(0).gameObject;
+        }
+        else
+        {
+            Debug.LogError("SafeArea not found - SafeArea have to be first child of Canvas and SafeArea GameObject name have to be 'SafeArea'.");
+        }
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            OffUI();
+        }
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            OnUI();
+        }
+    }
 
     public void CoroutineExecuter(string coroutineName, GameObject uIElement)
     {
@@ -36,5 +64,45 @@ public class UIController : Singleton<UIController>
 
         objectToHide.SetActive(true);
         objectToHideImage.DOFade(1, fadeOutDuration);
+    }
+
+    [Button]
+    public void OnUI()
+    {
+        //JoystickControl.Instance.lockJoystick = false;
+        JoystickMovement.Instance.moveLock = false;
+        Invoke("Delay", 2);
+
+        foreach (var item in _uIElementsList)
+        {
+            item.SetActive(true);
+        }
+
+        _uIElementsList.Clear();
+    }
+    [Button]
+    public void OffUI()
+    {
+        //JoystickControl.Instance.lockJoystick = true;
+        JoystickMovement.Instance.moveLock = true;
+        graphicRaycaster.enabled = false;
+
+        for (int i = 0; i < _safeArea.transform.childCount; i++)
+        {
+            if (_safeArea.transform.GetChild(i).gameObject.activeInHierarchy)
+            {
+                _uIElementsList.Add(_safeArea.transform.GetChild(i).gameObject);
+            }
+        }
+
+        foreach (var item in _uIElementsList)
+        {
+            item.SetActive(false);
+        }
+    }
+
+    public void Delay()
+    {
+        graphicRaycaster.enabled = true;
     }
 }

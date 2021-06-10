@@ -11,6 +11,7 @@ public class CharacterAnimation : MonoBehaviour
     private Animator animator;
     private bool running = false;
     private JoystickMovement joystickMovement;
+    private Vector3 direction;
 
     private void Start()
     {
@@ -20,8 +21,10 @@ public class CharacterAnimation : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Vector3 direction = Vector3.forward * variableJoystick.Vertical + Vector3.right * variableJoystick.Horizontal;
-        var moveLock = joystickMovement.moveLock;
+        //direction = Vector3.forward * variableJoystick.Vertical + Vector3.right * variableJoystick.Horizontal;
+        direction = JoystickMovement.Instance.direction;
+
+        var moveLock = joystickMovement.moveDeceleration;
 
         if (direction != new Vector3(0,0,0))
         {
