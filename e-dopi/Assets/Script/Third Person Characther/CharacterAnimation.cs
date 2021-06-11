@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class CharacterAnimation : MonoBehaviour
 {
-    public VariableJoystick variableJoystick;
     [Range(0.1f, 0.9f)]
     public float runLimit;
 
@@ -21,7 +20,6 @@ public class CharacterAnimation : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //direction = Vector3.forward * variableJoystick.Vertical + Vector3.right * variableJoystick.Horizontal;
         direction = JoystickMovement.Instance.direction;
 
         var moveLock = joystickMovement.moveDeceleration;

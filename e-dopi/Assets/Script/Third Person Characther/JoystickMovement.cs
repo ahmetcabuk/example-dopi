@@ -3,28 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
+[RequireComponent(typeof(Rigidbody))]
 public class JoystickMovement : Singleton<JoystickMovement>
 {
     public float maxSpeed;
     public VariableJoystick variableJoystick;
-    public Rigidbody rigid;
-    public bool moveDeceleration = true;
-    public bool moveLock = false;
-    [HideInInspector]
-    public Vector3 direction;
+    [HideInInspector] public bool moveDeceleration = true;
+    [HideInInspector] public bool moveLock = false;
+    [HideInInspector] public Vector3 direction;
 
-    private float currentSpeed;
-    private float initialSpeed;
-    private bool speedIncreased = false;
+    private Rigidbody _rigid;
+    private float _currentSpeed;
+    private float _initialSpeed;
+    private bool _speedIncreased = false;
 
     private void Start()
     {
-        currentSpeed = maxSpeed / 2;
-        initialSpeed = maxSpeed;
+        _rigid = GetComponent<Rigidbody>();
+        _currentSpeed = maxSpeed / 2;
+        _initialSpeed = maxSpeed;
     }
     private void Update()
     {
-        CheckMoveLockStatus();
+        CheckMoveDecelerationStatus();
     }
 
     public void FixedUpdate()
@@ -40,25 +41,25 @@ public class JoystickMovement : Singleton<JoystickMovement>
 
         if (moveDeceleration)
         {
-            rigid.MovePosition(transform.position + (direction * currentSpeed * Time.deltaTime));
+            _rigid.MovePosition(transform.position + (direction * _currentSpeed * Time.deltaTime));
         }
         else
         {
-            rigid.MovePosition(transform.position + (direction * currentSpeed * Time.deltaTime));
-            if (!speedIncreased)
+            _rigid.MovePosition(transform.position + (direction * _currentSpeed * Time.deltaTime));
+            if (!_speedIncreased)
             {
                 SpeedIncrase();
             }
         }
     }
 
-    private void CheckMoveLockStatus()
+    private void CheckMoveDecelerationStatus()
     {
         if (direction == Vector3.zero)
         {
             moveDeceleration = true;
-            currentSpeed = maxSpeed / 2;
-            speedIncreased = false;
+            _currentSpeed = maxSpeed / 2;
+            _speedIncreased = false;
         }
         else
         {
@@ -77,8 +78,8 @@ public class JoystickMovement : Singleton<JoystickMovement>
 
     public void SpeedIncrase()
     {
-        speedIncreased = true;
-        DOTween.To(() => currentSpeed, x => currentSpeed = x, initialSpeed, 1);
+        _speedIncreased = true;
+        DOTween.To(() => _currentSpeed, x => _currentSpeed = x, _initialSpeed, 1);
     }
 
     public void RestartInput()
