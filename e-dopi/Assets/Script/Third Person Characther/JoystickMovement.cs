@@ -38,7 +38,6 @@ public class JoystickMovement : Singleton<JoystickMovement>
             direction = new Vector3(0, 0, variableJoystick.Vertical) + new Vector3(variableJoystick.Horizontal, 0, 0);
         }
 
-
         if (moveDeceleration)
         {
             rigid.MovePosition(transform.position + (direction * currentSpeed * Time.deltaTime));
@@ -80,6 +79,12 @@ public class JoystickMovement : Singleton<JoystickMovement>
     {
         speedIncreased = true;
         DOTween.To(() => currentSpeed, x => currentSpeed = x, initialSpeed, 1);
+    }
+
+    public void RestartInput()
+    {
+        variableJoystick.input = Vector2.zero;
+        variableJoystick.handle.anchoredPosition = Vector3.zero;
     }
 }
 

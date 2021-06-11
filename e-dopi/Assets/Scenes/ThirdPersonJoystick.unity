@@ -928,11 +928,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 262208165}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &322634891 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3881087803815115468, guid: ec536a7718376554185e4a856d5ae230, type: 3}
-  m_PrefabInstance: {fileID: 168280668}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &334469460
 GameObject:
   m_ObjectHideFlags: 0
@@ -1078,11 +1073,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 347233266}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &359799803 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3881087804030458063, guid: ec536a7718376554185e4a856d5ae230, type: 3}
-  m_PrefabInstance: {fileID: 168280668}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &448840175
 GameObject:
   m_ObjectHideFlags: 0
@@ -2641,21 +2631,6 @@ MonoBehaviour:
   glowArrowDown: {fileID: 548277841}
   glowArrowRight: {fileID: 689114443}
   glowArrowLeft: {fileID: 1634609472}
---- !u!114 &823372047
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 823372045}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f06c30a7f0766b44a2180cc4c70f018, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bG: {fileID: 322634891}
-  handle: {fileID: 359799803}
-  lockJoystick: 0
 --- !u!1 &840891755
 GameObject:
   m_ObjectHideFlags: 0
