@@ -10,7 +10,7 @@ public class JoystickMovement : Singleton<JoystickMovement>
     public VariableJoystick variableJoystick;
     [HideInInspector] public bool moveDeceleration = true;
     [HideInInspector] public bool moveLock = false;
-    [HideInInspector] public Vector3 direction;
+    public Vector3 direction;
 
     private Rigidbody _rigid;
     private float _currentSpeed;
