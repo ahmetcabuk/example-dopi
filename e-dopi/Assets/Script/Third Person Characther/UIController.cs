@@ -12,14 +12,11 @@ public class UIController : Singleton<UIController>
     public GameObject interactionButton;
     private List<GameObject> _uIElementsList = new List<GameObject>();
     private GameObject _safeArea;
-    private GraphicRaycaster graphicRaycaster;
     
     private float fadeOutDuration = 1;
 
     private void Awake()
     {
-        graphicRaycaster = GetComponent<GraphicRaycaster>();
-
         if (transform.GetChild(0).gameObject.name == "SafeArea")
         {
             _safeArea = transform.GetChild(0).gameObject;
@@ -69,10 +66,6 @@ public class UIController : Singleton<UIController>
     [Button]
     public void OnUI()
     {
-        //JoystickControl.Instance.lockJoystick = false;
-        JoystickMovement.Instance.moveLock = false;
-        Invoke("Delay", 2);
-
         foreach (var item in _uIElementsList)
         {
             item.SetActive(true);
@@ -80,12 +73,11 @@ public class UIController : Singleton<UIController>
 
         _uIElementsList.Clear();
     }
+
     [Button]
     public void OffUI()
     {
-        //JoystickControl.Instance.lockJoystick = true;
-        JoystickMovement.Instance.moveLock = true;
-        graphicRaycaster.enabled = false;
+        JoystickMovement.Instance.RestartInput();
 
         for (int i = 0; i < _safeArea.transform.childCount; i++)
         {
@@ -99,10 +91,5 @@ public class UIController : Singleton<UIController>
         {
             item.SetActive(false);
         }
-    }
-
-    public void Delay()
-    {
-        graphicRaycaster.enabled = true;
     }
 }
