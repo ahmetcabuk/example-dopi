@@ -16,8 +16,15 @@ public class CameraFollow : MonoBehaviour
     private CameraZoom _cameraZoom;
     private bool _zoomOn;
 
-    private void Awake()
+    private void Start()
     {
+        //var player = GameObject.Find("Player");
+
+        //for (int i = 0; i < 25; i++)
+        //{
+        //    target = GameObject.Find("Player");
+        //}
+
         _cameraZoom = GetComponent<CameraZoom>();
         _targetPositionOffset = target.transform.position + gameObject.transform.position;
     }

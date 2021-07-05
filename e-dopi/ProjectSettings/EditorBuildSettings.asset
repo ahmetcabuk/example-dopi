@@ -6,6 +6,13 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/ThirdPersonJoystick.unity
+    path: Assets/Scenes/PhotonTest/Loading.unity
+    guid: 39ebd8e87a6314c4b88e46841d6e71c6
+  - enabled: 1
+    path: Assets/Scenes/PhotonTest/Lobby.unity
+    guid: 14d8bc539cd8a544782388373834ea4c
+  - enabled: 1
+    path: Assets/Scenes/PhotonTest/ThirdPersonJoystickPhoton.unity
     guid: a14e6ed3f97692c429a636228e5a0a98
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.input.settings: {fileID: 11400000, guid: e0aa59028302c254ab54694394c4cc33, type: 2}

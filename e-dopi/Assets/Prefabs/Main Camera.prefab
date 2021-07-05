@@ -97,9 +97,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eccb5ba8f23227e41947e0a090bc87b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
+  target: {fileID: 6140676850179163058, guid: fb84c1a7d98aea446bc4168364eea052, type: 3}
   _smoothness: 1
-  lookAt: 0
   _smoothSpeed: 0.1
 --- !u!114 &1655428006
 MonoBehaviour:
@@ -114,7 +113,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zoomOn: 0
-  targetObject: {fileID: 0}
+  targetSingleZoomObject: {fileID: 0}
   zoomObjectName: 
   fpsView: {fileID: 0}
   zoomAnimationDuration: 1
